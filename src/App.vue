@@ -1,13 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container>
+      <el-header>
+        <div>
+          <img src="./assets/logo.svg" alt="" />
+          <span>Bing每日壁纸</span>
+        </div>
+        <div>
+          <el-menu :default-active="'.' + $route.path" class="el-menu-demo" mode="horizontal" :router="true">
+            <el-menu-item index="./">首页</el-menu-item>
+            <el-menu-item index="./about">关于</el-menu-item>
+          </el-menu>
+        </div>
+      </el-header>
+      <el-main>
+        <router-view/>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      
+    }
+  },
+    
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -17,16 +39,29 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+
+.el-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0;
+  align-items: center;
+  font-size: 20px;
+  border-bottom: 1px solid #eaf0f5;
+}
+.el-header div {
+  display: flex;
+  align-items: center;
+}
+.el-header div span {
+  margin-left: 15px;
+}
+.el-header div img {
+  height: 40px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.el-footer {
+  position:absolute;
+  bottom: 0;
+  background-color: rgb(60, 216, 236);
 }
 </style>
