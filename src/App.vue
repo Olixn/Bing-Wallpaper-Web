@@ -9,6 +9,7 @@
         <div>
           <el-menu :default-active="'.' + $route.path" class="el-menu-demo" mode="horizontal" :router="true">
             <el-menu-item index="./">首页</el-menu-item>
+            <el-menu-item index="./api">API</el-menu-item>
             <el-menu-item index="./about">关于</el-menu-item>
           </el-menu>
         </div>

@@ -2,20 +2,18 @@
   <div class="home">
     <el-row :gutter="24" v-for="i in 3" :key="i">
       <el-col :span="8" v-for="item in picUrls" :key="item">
-        <el-tooltip placement="top">
-          <div slot="content">
-              <p style="font-size:15px;">{{item.copyright}}</p>
-              <p>日期：{{item.date}}</p>
-              <p>下载：{{item.hsh}}</p>
+        <div class="container animate__animated animate__pulse">
+          <img :src="'https://cn.bing.com'+ item.url" class="image">
+          <div class="overlay">
+            <div class="text">
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;">日期：{{item.date}}</p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;">下载：{{item.hsh}}</p>
+            </div>
           </div>
-          <div class="animate__animated animate__pulse"><img alt="Vue logo" :src="'https://cn.bing.com'+ item.url"></div>
-        </el-tooltip>
+        </div>
         </el-col>
     </el-row>
-    
-    
-    
-    
   </div>
 </template>
 
@@ -53,14 +51,48 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.home img {
-  width: 100%;
-  height: 100%;
-}
 
 
 .el-col {
   padding-right: 0 !important;
-  width: 33%;
+  padding-left: 0 !important;
 }
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  text-align: left;
+}
+
+
 </style>
