@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-row :gutter="24" v-for="i in 3" :key="i">
+    <el-row>
       <el-col :span="8" v-for="item in picUrls" :key="item">
         <div class="container animate__animated animate__pulse">
           <img :src="'https://cn.bing.com'+ item.url" class="image">
@@ -44,6 +44,21 @@ export default {
           "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
           "hsh": "50126038cc765a7a91e30da3797bb0ca",
         },
+        {
+          "date": "20220124",
+          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
+          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
+          "hsh": "50126038cc765a7a91e30da3797bb0ca",
+        },
+        {
+          "date": "20220124",
+          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
+          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
+          "hsh": "50126038cc765a7a91e30da3797bb0ca",
+        },
+        
       ]
     }
   }
