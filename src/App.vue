@@ -8,9 +8,9 @@
         </div>
         <div>
           <el-menu :default-active="'.' + $route.path" class="el-menu-demo" mode="horizontal" :router="true">
-            <el-menu-item index="./">首页</el-menu-item>
-            <el-menu-item index="./api">API</el-menu-item>
-            <el-menu-item index="./about">关于</el-menu-item>
+            <el-menu-item index="/">首页</el-menu-item>
+            <el-menu-item index="/api">API</el-menu-item>
+            <el-menu-item index="/about">关于</el-menu-item>
           </el-menu>
         </div>
       </el-header>
@@ -60,9 +60,7 @@ export default {
   height: 40px;
 }
 
-.el-footer {
-  position:absolute;
-  bottom: 0;
-  background-color: rgb(60, 216, 236);
+.el-main {
+  padding: 12px !important;
 }
 </style>

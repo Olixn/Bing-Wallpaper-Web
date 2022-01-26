@@ -4,16 +4,17 @@
       <el-col :span="8" v-for="item in picUrls" :key="item">
         <div class="container animate__animated animate__pulse">
           <img :src="'https://cn.bing.com'+ item.url" class="image">
-          <div class="overlay">
+          <div class="overlay" @click="showBig(item.hsh)">
             <div class="text">
               <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;">日期：{{item.date}}</p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;">下载：{{item.hsh}}</p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.date}}</i></p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-download"> {{item.hsh}}</i></p>
             </div>
           </div>
         </div>
         </el-col>
     </el-row>
+
   </div>
 </template>
 
@@ -23,6 +24,8 @@ export default {
   name: 'Home',
   data() {
     return {
+      dialogVisible: false,
+      dialogImgUrl:'',
       picUrls:[
         {
           "date": "20220124",
@@ -88,13 +91,20 @@ export default {
         },
       ]
     }
+  },
+  methods:{
+    showBig(h) {
+      console.log(h)
+      this.$router.push("/view/"+h)
+    },
   }
 }
 </script>
 
 <style lang="css" scoped>
 .home {
-  padding: 0px 10px; 
+  padding:0;
+  width: 100%;
 }
 
 .el-col {
