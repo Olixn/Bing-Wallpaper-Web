@@ -1,34 +1,37 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/Home'
-import About from '../components/About'
-import Api from '../components/Api'
-import View from '../components/View'
+import Home from '../components/index/Home'
+import About from '../components/index/About'
+import Api from '../components/index/Api'
+import View from '../components/index/View'
+import Index from '../components/index/Index'
+import Admin from '../components/admin/Admin'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/index',
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path:'/index',
+    name: 'Index',
+    component: Index,
+    children: [
+      {path: '/',name:'Home',component:Home},
+      {path: '/about',name: 'About',component: About},
+      {path: '/api',name: 'Api',component: Api},
+      {path: '/view/:hash',name: 'View',component: View},
+    ]
   },
   {
-    path: '/api',
-    name: 'Api',
-    component: Api
+    path:'/admin',
+    name: 'Admin',
+    component: Admin,
+    children: [
+    ]
   },
-  {
-    path: '/view/:hash',
-    name: 'View',
-    component: View
-  },
-  
 ]
 
 const router = new VueRouter({
