@@ -1,19 +1,30 @@
 <template>
   <div class="home">
     <el-row :gutter="24">
-      <el-col :span="8" v-for="item in picUrls" :key="item">
+      <el-col :span="8" v-for="item in picUrls" :key="item.id">
         <div class="container animate__animated animate__pulse">
           <img :src="'https://cn.bing.com'+ item.url" class="image">
-          <div class="overlay" @click="showBig(item.hsh)">
+          <div class="overlay" @click="showBig(item.id,item.urlbase)">
             <div class="text">
               <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.date}}</i></p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-download"> {{item.hsh}}</i></p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.enddate}}</i></p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-view"> {{item.view}}</i></p>
             </div>
           </div>
         </div>
         </el-col>
     </el-row>
+
+    <div style="margin:10px;">
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :current-page=queryInfo.page
+        :page-size=queryInfo.size
+        layout="total, prev, pager, next"
+        :total=total>
+      </el-pagination>
+    </div>
+    
 
   </div>
 </template>
@@ -24,79 +35,34 @@ export default {
   name: 'Home',
   data() {
     return {
-      dialogVisible: false,
-      dialogImgUrl:'',
-      picUrls:[
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },{
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-        {
-          "date": "20220124",
-          "urlbase": "/th?id=OHR.ManhattanView_ZH-CN3156325644",
-          "url": "/th?id=OHR.ManhattanView_ZH-CN3156325644_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
-          "copyright": "灯光璀璨的曼哈顿下城，美国纽约 (© New York On Air/Offset/Shutterstock)",
-          "hsh": "50126038cc765a7a91e30da3797bb0ca",
-        },
-      ]
+      total:0,
+      queryInfo: {
+        page:1,
+        size:9
+      },
+      picUrls:[]
     }
   },
+  created() {
+    this.getList()
+  },
   methods:{
-    showBig(h) {
-      console.log(h)
-      this.$router.push("/view/"+h)
+    showBig(id,url) {
+      this.$axios.put(`/view/${id}`).then((data)=>{})
+      window.open("https://cn.bing.com" + url + "_1920x1080.jpg","_blank")
     },
+    getList() {
+      this.$axios.get("/getList",{params:this.queryInfo})
+        .then(({data}) => {
+          if (data.status != 1) return
+          this.total = data.total
+          this.picUrls = data.data
+        })
+    },
+    handleCurrentChange(page) {
+      this.queryInfo.page = page
+      this.getList()
+    }
   }
 }
 </script>

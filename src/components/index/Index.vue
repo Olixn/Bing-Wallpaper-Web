@@ -3,7 +3,7 @@
       <el-header>
         <div>
           <img src="../../assets/logo.svg" alt="" />
-          <span>Bing每日壁纸</span>
+          <span>每日壁纸</span>
         </div>
         <div>
           <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" :router="true">

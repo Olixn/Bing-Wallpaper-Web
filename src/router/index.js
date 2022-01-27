@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../components/index/Home'
 import About from '../components/index/About'
 import Api from '../components/index/Api'
-import View from '../components/index/View'
 import Index from '../components/index/Index'
 import Admin from '../components/admin/Admin'
 
@@ -22,7 +21,6 @@ const routes = [
       {path: '/',name:'Home',component:Home},
       {path: '/about',name: 'About',component: About},
       {path: '/api',name: 'Api',component: Api},
-      {path: '/view/:hash',name: 'View',component: View},
     ]
   },
   {

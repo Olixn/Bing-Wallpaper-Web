@@ -12,7 +12,8 @@ import {
     Col,
     Popover,
     Tooltip,
-    Card
+    Card,
+    Pagination
 } from "element-ui"
 
 Vue.use(Button)
@@ -27,3 +28,4 @@ Vue.use(Col)
 Vue.use(Popover)
 Vue.use(Tooltip)
 Vue.use(Card)
+Vue.use(Pagination)
