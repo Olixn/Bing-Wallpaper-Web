@@ -9,6 +9,9 @@
               <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
               <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.enddate}}</i></p>
               <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-view"> {{item.view}}</i></p>
+              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;" class="opline">
+                <el-button size="mini" @click.stop="download(item)"><i class="el-icon-download">下载</i></el-button>
+              </p>
             </div>
           </div>
         </div>
@@ -62,6 +65,27 @@ export default {
     handleCurrentChange(page) {
       this.queryInfo.page = page
       this.getList()
+    },
+    download(item) {
+      this.$axios.get('/download',{
+        params:{
+          "copyright": item.copyright,
+          "urlBase": item.urlbase
+        },
+        responseType: 'blob'}
+      ).then((data)=>{
+        let blob = data.data
+        let reader = new FileReader()
+        reader.readAsDataURL(blob)
+        reader.onload = (e) => {
+          let a = document.createElement('a')
+          a.download = item.copyright + ".jpg"
+          a.href = e.target.result
+          document.body.appendChild(a)
+          a.click()
+          document.body.removeChild(a)
+        }
+      })
     }
   }
 }
@@ -113,6 +137,13 @@ export default {
   left: 20px;
   text-align: left;
 }
+
+.opline {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
 
 
 </style>
