@@ -1,6 +1,6 @@
 <template>
     <el-container>
-      <el-header>
+      <el-header :style="$route.path == '/photo' ? 'display:none;': ''">
         <div>
           <img src="../../assets/logo.svg" alt="" />
           <span>每日壁纸</span>
@@ -50,6 +50,6 @@ export default {
 }
 
 .el-main {
-  padding: 12px !important;
+  padding: 0px !important;
 }
 </style>
