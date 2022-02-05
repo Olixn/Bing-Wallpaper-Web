@@ -33,7 +33,6 @@ export default {
 .el-header {
   display: flex;
   justify-content: space-between;
-  padding-left: 0;
   align-items: center;
   font-size: 20px;
   border-bottom: 1px solid #eaf0f5;
