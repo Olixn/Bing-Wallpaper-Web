@@ -13,7 +13,9 @@ import {
     Popover,
     Tooltip,
     Card,
-    Pagination
+    Pagination,
+    Dialog,
+    Loading
 } from "element-ui"
 
 Vue.use(Button)
@@ -29,3 +31,5 @@ Vue.use(Popover)
 Vue.use(Tooltip)
 Vue.use(Card)
 Vue.use(Pagination)
+Vue.use(Dialog)
+Vue.use(Loading)

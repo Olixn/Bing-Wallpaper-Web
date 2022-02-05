@@ -4,7 +4,7 @@
           <div class="lop"><el-button size="small" @click="back()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-back"></i>返回</el-button></div>
           <div class="rop">
               <el-button size="small" @click="back()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-share"></i>分享</el-button>
-              <el-button size="small" @click="download()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-download"></i>下载</el-button>
+              <el-button size="small" @click="showDownloadDialog()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-download"></i>下载</el-button>
           </div>
       </div>
       <div class="copyright">
@@ -12,6 +12,27 @@
             <p style="margin-block-end:10px; margin-block-start:2px;"><i class="el-icon-date"> {{imgInfo.enddate}}</i></p>
             <p style="margin-block-end:10px; margin-block-start:2px;"><i class="el-icon-view"> {{imgInfo.view}}</i></p>
       </div>
+
+      <el-dialog
+        title="请选择分辨率"
+        :visible.sync="dialogVisible"
+        width="30%">
+        <div>
+            <el-row :gutter="24">
+                <el-col :span="8"><el-button @click="download(1920,1200)" style="background-color:rgba(255, 255, 255, 0.8);">1920x1200</el-button></el-col>
+                <el-col :span="8"><el-button @click="download(1920,1080)" style="background-color:rgba(255, 255, 255, 0.8);">1920x1080</el-button></el-col>
+                <el-col :span="8"><el-button @click="download(1366,768)" style="background-color:rgba(255, 255, 255, 0.8);">1366x768</el-button></el-col>
+            </el-row>
+            <el-row :gutter="24">
+                <el-col :span="8"><el-button @click="download(1280,768)" style="background-color:rgba(255, 255, 255, 0.8);">1280x768</el-button></el-col>
+                <el-col :span="8"><el-button @click="download(1024,768)" style="background-color:rgba(255, 255, 255, 0.8);">1024x768</el-button></el-col>
+                <el-col :span="8"><el-button @click="download(800,600)" style="background-color:rgba(255, 255, 255, 0.8);">800x600</el-button></el-col>
+            </el-row>
+            <el-row :gutter="24">
+                <span>其他分辨率请查看API接口</span>
+            </el-row>
+        </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -19,6 +40,7 @@
 export default {
     data() {
         return {
+            dialogVisible:false,
             imgInfo:{}
         }
     },
@@ -37,25 +59,40 @@ export default {
         back() {
             this.$router.go(-1)
         },
-        download() {
+        showDownloadDialog() {
+            this.dialogVisible = true
+        },
+        download(w,h) {
+            const loading = this.$loading({
+                    lock: true,
+                    text: '下载中...',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
             this.$axios.get('/download',{
                 params:{
-                "copyright": this.imgInfo.copyright,
-                "urlBase": this.imgInfo.urlbase
+                    "copyright": this.imgInfo.copyright,
+                    "urlBase": this.imgInfo.urlbase,
+                    "w":w,
+                    "h":h
                 },
-                responseType: 'blob'}
-            ).then((data)=>{
+                responseType: 'blob'
+            }).then((data)=>{
                 let blob = data.data
                 let reader = new FileReader()
                 reader.readAsDataURL(blob)
                 reader.onload = (e) => {
-                let a = document.createElement('a')
-                    a.download = this.imgInfo.copyright + ".jpg"
+                    let a = document.createElement('a')
+                    a.download = this.imgInfo.copyright + "_" + w + "x" + h +".jpg"
                     a.href = e.target.result
                     document.body.appendChild(a)
                     a.click()
                     document.body.removeChild(a)
                 }
+                setTimeout(()=>{
+                    this.dialogVisible = false
+                    loading.close()
+                },2000)
             })
         }
     }
@@ -99,5 +136,9 @@ export default {
 }
 .copyright p{
     padding-left: 20px;
+}
+
+.el-row {
+    padding-bottom: 2px;
 }
 </style>

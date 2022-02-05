@@ -66,24 +66,33 @@ export default {
       this.getList()
     },
     download(item) {
+      const loading = this.$loading({
+          lock: true,
+          text: '下载中...',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+      });
       this.$axios.get('/download',{
         params:{
           "copyright": item.copyright,
           "urlBase": item.urlbase
         },
-        responseType: 'blob'}
-      ).then((data)=>{
+        responseType: 'blob'
+      }).then((data)=>{
         let blob = data.data
         let reader = new FileReader()
         reader.readAsDataURL(blob)
         reader.onload = (e) => {
           let a = document.createElement('a')
-          a.download = item.copyright + ".jpg"
+          a.download = item.copyright + "_1920x1080.jpg"
           a.href = e.target.result
           document.body.appendChild(a)
           a.click()
           document.body.removeChild(a)
         }
+        setTimeout(()=>{
+          loading.close()
+        },2000)
       })
     }
   }
