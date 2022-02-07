@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './plugins/element'
 
 import axios from 'axios'
-axios.defaults.baseURL = 'http://bing.gocos.cn/api/v1'
+axios.defaults.baseURL = 'https://bing.gocos.cn/api/v1'
 
 Vue.prototype.$axios = axios
 

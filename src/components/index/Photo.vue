@@ -3,8 +3,9 @@
       <div class="nav animate__animated animate__pulse">
           <div class="lop"><el-button size="small" @click="back()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-back"></i>返回</el-button></div>
           <div class="rop">
-              <el-button size="small" @click="back()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-share"></i>分享</el-button>
+              <el-button size="small" @click="goInfo()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-info"></i>详情</el-button>
               <el-button size="small" @click="showDownloadDialog()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-download"></i>下载</el-button>
+              <el-button size="small" @click="goUhd()" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-picture-outline"></i>超高清4K</el-button>
           </div>
       </div>
       <div class="copyright">
@@ -28,9 +29,7 @@
                 <el-col :span="8"><el-button @click="download(1024,768)" style="background-color:rgba(255, 255, 255, 0.8);">1024x768</el-button></el-col>
                 <el-col :span="8"><el-button @click="download(800,600)" style="background-color:rgba(255, 255, 255, 0.8);">800x600</el-button></el-col>
             </el-row>
-            <el-row :gutter="24">
-                <span>其他分辨率请查看API接口</span>
-            </el-row>
+            <p>其他分辨率请查看API接口</p>
         </div>
     </el-dialog>
   </div>
@@ -61,6 +60,13 @@ export default {
         },
         showDownloadDialog() {
             this.dialogVisible = true
+        },
+        goInfo() {
+            window.open(this.imgInfo.copyrightlink,"_self")
+        },
+        goUhd() {
+            let uhd = "https://cn.bing.com" + this.imgInfo.urlbase + "_UHD.jpg"
+            window.open(uhd,"_self")
         },
         download(w,h) {
             const loading = this.$loading({
@@ -123,6 +129,11 @@ export default {
    right: 30px;
    padding-top: 20px; 
 }
+
+i {
+    padding-right: 3px;
+}
+
 .copyright {
     position: fixed;
     height: 100px;
