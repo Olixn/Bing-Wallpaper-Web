@@ -38,4 +38,16 @@ const router = new VueRouter({
   routes
 })
 
+router.afterEach(( to, from, next ) => {
+  setTimeout(()=>{
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?8b9d7cc0a562e7737bb82afc466c30e6";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  },0);
+});
+
 export default router
