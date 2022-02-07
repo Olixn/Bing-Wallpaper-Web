@@ -27,6 +27,12 @@
         :total=total>
       </el-pagination>
     </div>
+
+
+    <div class="footer">
+        <p>本站所有图片均来自必应搜索</p>
+        <p>Copyright © 2022 云淡风轻 Author Ne-21</p>
+      </div>
     
 
   </div>
@@ -156,6 +162,12 @@ export default {
   right: 10px;
 }
 
-
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 0 20px;
+  font-weight: bold;
+}
 
 </style>
