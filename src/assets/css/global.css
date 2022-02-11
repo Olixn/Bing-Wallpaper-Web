@@ -1,8 +1,15 @@
+/* 引用字体 */
+@font-face {
+  font-family: HMS;
+  src: url("../HMS.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body,
 #app {
-  height: 100%;
   margin: 0;
   padding: 0;
-  min-width: 1366px;
+  font-family: "HMS";
 }

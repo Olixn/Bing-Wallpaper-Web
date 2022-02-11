@@ -1,22 +1,18 @@
 <template>
   <div class="home">
-    <el-row :gutter="24">
-      <el-col :span="8" v-for="item in picUrls" :key="item.id">
-        <div class="container animate__animated animate__pulse">
-          <img :src="'https://cn.bing.com'+ item.url" class="image">
-          <div class="overlay" @click="showBig(item)">
-            <div class="text">
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.enddate}}</i></p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-view"> {{item.view}}</i></p>
-              <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;" class="opline">
-                <el-button size="mini" @click.stop="download(item)" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-download">下载</i></el-button>
-              </p>
-            </div>
-          </div>
+    <div class="imgItem animate__animated animate__pulse" v-for="item in picUrls" :key="item.id">
+      <img :src="'https://cn.bing.com'+ item.url" class="image">
+      <div class="overlay" @click="showBig(item)">
+        <div class="text">
+          <p style="margin-block-end:10px; margin-block-start:2px; font-size:14px;">{{item.copyright}}</p>
+          <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-date"> {{item.enddate}}</i></p>
+          <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;"><i class="el-icon-view"> {{item.view}}</i></p>
+          <p style="margin-block-end:10px; margin-block-start:2px; font-size:10px;" class="opline">
+            <el-button size="mini" @click.stop="download(item)" style="background-color:rgba(255, 255, 255, 0.8);"><i class="el-icon-download">下载</i></el-button>
+          </p>
         </div>
-        </el-col>
-    </el-row>
+      </div>
+    </div>
 
     <div style="margin:10px;">
       <el-pagination
@@ -109,21 +105,19 @@ export default {
 .home {
   padding: 0;
   padding-top: 5px;
-  width: 100%;
-}
-.el-row {
-  margin-left: -12px !important;
-  margin-right: 0px !important;
-}
-.el-col {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
+  font-size:0;
+  text-align: center;
 }
 
-.container {
+.imgItem {
+  display: inline-block;
+  width: 33.33%;
+  height: auto;
   position: relative;
-  width: 100%;
+  border: 0;
+
 }
+
 
 .image {
   display: block;
@@ -143,7 +137,7 @@ export default {
   transition: .5s ease;
 }
 
-.container:hover .overlay {
+.imgItem:hover .overlay {
   opacity: 1;
 }
 
