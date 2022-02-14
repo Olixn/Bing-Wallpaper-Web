@@ -5,14 +5,11 @@
           <img src="../../assets/logo.svg" alt="" />
           <span>每日壁纸</span>
         </div>
-        <!-- <div>
+        <div>
           <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" :router="true">
-            <el-menu-item index="/index">首页</el-menu-item>
-            <el-menu-item index="/api">API</el-menu-item>
-            <el-menu-item index="/about">关于</el-menu-item>
             <el-menu-item @click="goGithub()"><img src="../../assets/GitHub.svg" alt="" style="width:20px; "></el-menu-item>
           </el-menu>
-        </div> -->
+        </div>
       </el-header>
       <el-main>
         <router-view/>
@@ -29,7 +26,7 @@ export default {
   },
   methods:{
     goHome(){
-      this.$router.push({path:'/index'})
+      this.$router.push({path:'/m'})
     },
     goGithub() {
       window.open("https://github.com/Olixn/Bing-Wallpaper-Web","_self")
