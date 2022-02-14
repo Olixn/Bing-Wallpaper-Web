@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../components/index/Home'
-import About from '../components/index/About'
-import Api from '../components/index/Api'
-import Index from '../components/index/Index'
-import Photo from '../components/index/Photo'
+import Home from '../components/pc/Home'
+import About from '../components/pc/About'
+import Api from '../components/pc/Api'
+import Index from '../components/pc/Index'
+import Photo from '../components/pc/Photo'
 import Admin from '../components/admin/Admin'
+import M from '../components/m/M'
+import MHome from '../components/m/MHome'
+import MPhoto from '../components/m/MPhoto'
 
 Vue.use(VueRouter)
 
@@ -23,6 +26,15 @@ const routes = [
       {path: '/about',name: 'About',component: About},
       {path: '/api',name: 'Api',component: Api},
       {path: '/photo',name: 'photo',component: Photo}
+    ]
+  },
+  {
+    path:'/m',
+    name: 'M',
+    component: M,
+    children: [
+      {path: '/',name:'MHome',component:MHome},
+      {path: '/mphoto',name: 'MPhoto',component: MPhoto}
     ]
   },
   {

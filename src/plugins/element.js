@@ -15,7 +15,8 @@ import {
     Card,
     Pagination,
     Dialog,
-    Loading
+    Loading,
+    Notification
 } from "element-ui"
 
 Vue.use(Button)
@@ -33,3 +34,5 @@ Vue.use(Card)
 Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Loading)
+
+Vue.prototype.$notify = Notification

@@ -19,5 +19,13 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <script type="text/javascript">
+      if(/Android|webOS| iPhone | iPad | iPod |BlackBerry|opera mini|opera mobile|appleWebkit.*mobile|mobile/i.test(navigator.userAgent)) {
+          window.location.href = "./#/m";
+        } else {
+          window.location.href = "./#/index";
+        }
+    </script>
   </body>
 </html>
