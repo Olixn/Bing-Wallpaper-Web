@@ -1,4 +1,5 @@
-# bing-wallpaper-web
+# Bing每日壁纸web端
+> Demo：https://bing.gocos.cn
 
 ## Project setup
 ```
